@@ -32,6 +32,24 @@ namespace Discord
         /// </returns>
         Task<IUserMessage> SendMessageAsync(string text = null, bool isTTS = false, Embed embed = null, RequestOptions options = null);
         /// <summary>
+        ///     Sends a messge to this message channel and will autmatically build
+        /// </summary>
+        /// <example>
+        ///     The following example sends an unbuilt Embed with a title and a description
+        ///     <code language="cs">
+        ///         var embed = new EmbedBuilder();
+        ///         embed.withTitle("Server Command List");
+        ///         embed.withDescription("!info\n!help\n!xp");
+        ///         await channel.SendMessageAsync("", false, embed);
+        ///     </code>
+        /// </example>
+        /// <param name="text">The message to be sent.</param>
+        /// <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+        /// <param name="embedBuilder">The <see cref="EmbedBuilder"/> to be sent.</param>
+        /// <param name="options">The options to be used when sending the request.</param>
+        /// <returns></returns>
+        Task<IUserMessage> SendMessageAsync(string text = null, bool isTTS = false, EmbedBuilder embedBuilder = null, RequestOptions options = null);
+        /// <summary>
         ///     Sends a file to this message channel with an optional caption.
         /// </summary>
         /// <example>

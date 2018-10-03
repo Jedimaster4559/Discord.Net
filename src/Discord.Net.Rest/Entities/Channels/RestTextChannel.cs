@@ -263,6 +263,9 @@ namespace Discord.Rest
         /// <inheritdoc />
         async Task<IUserMessage> IMessageChannel.SendMessageAsync(string text, bool isTTS, Embed embed, RequestOptions options)
             => await SendMessageAsync(text, isTTS, embed, options).ConfigureAwait(false);
+        /// <inheritdoc />
+        async Task<IUserMessage> IMessageChannel.SendMessageAsync(string text, bool isTTS, EmbedBuilder embedBuilder, RequestOptions options)
+            => await SendMessageAsync(text, isTTS, embedBuilder.Build(), options).ConfigureAwait(false);
 
         //IGuildChannel
         /// <inheritdoc />
