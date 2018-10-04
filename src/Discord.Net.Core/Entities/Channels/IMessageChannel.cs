@@ -47,7 +47,10 @@ namespace Discord
         /// <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
         /// <param name="embedBuilder">The <see cref="EmbedBuilder"/> to be sent.</param>
         /// <param name="options">The options to be used when sending the request.</param>
-        /// <returns></returns>
+        /// <returns>
+        ///     A task that represents an asynchronous send operation for delivering the message. The task result
+        ///     contains the sent message.
+        /// </returns>
         Task<IUserMessage> SendMessageAsync(string text = null, bool isTTS = false, EmbedBuilder embedBuilder = null, RequestOptions options = null);
         /// <summary>
         ///     Sends a file to this message channel with an optional caption.

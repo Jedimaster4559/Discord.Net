@@ -29,7 +29,21 @@ namespace Discord.WebSocket
         ///     A task that represents an asynchronous send operation for delivering the message. The task result
         ///     contains the sent message.
         /// </returns>
+        /// 
         new Task<RestUserMessage> SendMessageAsync(string text = null, bool isTTS = false, Embed embed = null, RequestOptions options = null);
+        /// <summary>
+        ///     Sends a message to this message channel. Automatically builds unbuilt embeds
+        /// </summary>
+        /// <param name="text">The message to be sent.</param>
+        /// <param name="isTTS">Determines whether the message should be read aloud by Discord or not.</param>
+        /// <param name="embedBuilder">The <see cref="Discord.EmbedType.Rich"/> <see cref="EmbedBuilder"/> to be sent.</param>
+        /// <param name="options">The options to be used when sending the request.</param>
+        /// <returns>
+        ///     A task that represents an asynchronous send operation for delivering the message. The task result
+        ///     contains the sent message.
+        /// </returns>
+        /// 
+        new Task<RestUserMessage> SendMessageAsync(string text = null, bool isTTS = false, EmbedBuilder embedBuilder = null, RequestOptions options = null);
         /// <summary>
         ///     Sends a file to this message channel with an optional caption.
         /// </summary>

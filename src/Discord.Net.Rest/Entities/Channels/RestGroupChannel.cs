@@ -97,6 +97,9 @@ namespace Discord.Rest
         /// <exception cref="ArgumentOutOfRangeException">Message content is too long, length must be less or equal to <see cref="DiscordConfig.MaxMessageSize"/>.</exception>
         public Task<RestUserMessage> SendMessageAsync(string text = null, bool isTTS = false, Embed embed = null, RequestOptions options = null)
             => ChannelHelper.SendMessageAsync(this, Discord, text, isTTS, embed, options);
+        /// <inheritdoc />
+        public Task<RestUserMessage> SendMessageAsync(string text = null, bool isTTS = false, EmbedBuilder embedBuilder = null, RequestOptions options = null)
+            => ChannelHelper.SendMessageAsync(this, Discord, text, isTTS, embedBuilder.Build(), options);
 
         /// <inheritdoc />
         /// <exception cref="ArgumentException">
@@ -185,6 +188,8 @@ namespace Discord.Rest
             => await SendFileAsync(stream, filename, text, isTTS, embed, options).ConfigureAwait(false);
         async Task<IUserMessage> IMessageChannel.SendMessageAsync(string text, bool isTTS, Embed embed, RequestOptions options)
             => await SendMessageAsync(text, isTTS, embed, options).ConfigureAwait(false);
+        async Task<IUserMessage> IMessageChannel.SendMessageAsync(string text, bool isTTS, EmbedBuilder embedBuilder, RequestOptions options)
+            => await SendMessageAsync(text, isTTS, embedBuilder, options).ConfigureAwait(false);
 
         //IAudioChannel
         /// <inheritdoc />

@@ -35,6 +35,8 @@ namespace Discord.Rest
 
         public Task<RestUserMessage> SendMessageAsync(string text = null, bool isTTS = false, Embed embed = null, RequestOptions options = null)
             => ChannelHelper.SendMessageAsync(this, Discord, text, isTTS, embed, options);
+        public Task<RestUserMessage> SendMessageAsync(string text = null, bool isTTS = false, EmbedBuilder embedBuilder = null, RequestOptions options = null)
+            => ChannelHelper.SendMessageAsync(this, Discord, text, isTTS, embedBuilder.Build(), options);
         public Task<RestUserMessage> SendFileAsync(string filePath, string text, bool isTTS = false, Embed embed = null, RequestOptions options = null)
             => ChannelHelper.SendFileAsync(this, Discord, filePath, text, isTTS, embed, options);
         public Task<RestUserMessage> SendFileAsync(Stream stream, string filename, string text, bool isTTS = false, Embed embed = null, RequestOptions options = null)
@@ -96,6 +98,8 @@ namespace Discord.Rest
             => await SendFileAsync(stream, filename, text, isTTS, embed, options).ConfigureAwait(false);
         async Task<IUserMessage> IMessageChannel.SendMessageAsync(string text, bool isTTS, Embed embed, RequestOptions options)
             => await SendMessageAsync(text, isTTS, embed, options).ConfigureAwait(false);
+        async Task<IUserMessage> IMessageChannel.SendMessageAsync(string text, bool isTTS, EmbedBuilder embedBuilder, RequestOptions options)
+            => await SendMessageAsync(text, isTTS, embedBuilder.Build(), options).ConfigureAwait(false);
 
         //IChannel
         string IChannel.Name => 
